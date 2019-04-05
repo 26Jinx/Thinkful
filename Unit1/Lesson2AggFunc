@@ -1,0 +1,41 @@
+# What was teh hottest day in our data set? Where was that?
+SELECT
+	date,
+	zip,
+	maxtemperaturef as max_temp
+FROM
+	weather
+WHERE
+	maxtemperaturef=(SELECT MAX(maxtemperaturef) FROM weather);
+  
+# Answer: On 2015-11-17, the max temperature was 134F degrees at 94063.
+
+
+
+# How many trips started at each station?
+SELECT
+	start_station,
+	count(start_station)
+FROM 
+	trips
+GROUP BY 1;
+
+
+
+# What was the shortest trip that happened?
+SELECT
+	*
+FROM
+	trips
+WHERE 
+	duration=(SELECT MIN(duration) FROM trips);
+
+
+
+# What is the average trip duration, by end station?
+SELECT
+	end_station,
+	AVG(duration) AS avg_duration
+FROM 
+	trips
+GROUP BY 1;
