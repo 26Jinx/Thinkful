@@ -39,3 +39,4 @@ SELECT
 FROM 
 	trips
 GROUP BY 1;
+
