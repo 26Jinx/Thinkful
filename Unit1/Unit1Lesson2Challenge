@@ -33,5 +33,30 @@ at least that many rentals.
 
 
 What time of year is the cheapest time to go to San Francisco? What about the busiest?
+WITH
+	available
+AS (
+	SELECT
+		listing_id,
+		DATE(calender_date) as date
+	FROM
+		sfo_calendar
+	WHERE
+		available = 't'
+)
 
+SELECT
+	EXTRACT(MONTH FROM a.date) AS month,
+	AVG(l.price) as avg_price
+FROM
+	sfo_listings l
+JOIN
+	available a
+ON
+	l.id = a.listing_id
+GROUP BY
+	1
+ORDER BY
+	2;
 
+The average price cheapest in April at $197.08, and most expensive in September at $225.48 
