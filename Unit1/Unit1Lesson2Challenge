@@ -1,4 +1,4 @@
-What's the most expensive listing? What else can you tell me about the listing?
+1. What's the most expensive listing? What else can you tell me about the listing?
 SELECT
 	name,
 	neighbourhood,
@@ -16,7 +16,7 @@ $10,000
 Available 18/365 days?
 
 
-What neighborhoods seem to be the most popular?
+2. What neighborhoods seem to be the most popular?
 SELECT 
 	neighbourhood,
 	SUM(number_of_reviews) as reviews,
@@ -31,8 +31,38 @@ ORDER BY
 Mission has the most reviews which could mean that it is most popular since there needs to be 
 at least that many rentals.
 
+^^^^^^^^^^^^^^^ WAS DONE NOT KNOWING SFO_CALENDAR HAD AVAILABLE COL ^^^^^^^^^^^^^^^^^^^^^^^
 
-What time of year is the cheapest time to go to San Francisco? What about the busiest?
+
+=============== MORE ACCURATE QUERY USING SFO_CALENDAR BELOW =====================
+WITH
+	booked
+AS (
+	SELECT
+		listing_id
+	FROM
+	 	sfo_calendar
+	WHERE
+	 	available = 'f'
+)
+
+SELECT
+	l.neighbourhood AS neighborhoods,
+	COUNT(l.neighbourhood) AS booked_listings
+FROM
+	sfo_listings l
+JOIN
+	booked b
+ON
+	l.id = b.listing_id
+GROUP BY
+	1
+ORDER BY
+	2 DESC;
+
+The answer was confirmed to be Mission neighborhood with 142,984 booked listings.
+
+3. What time of year is the cheapest time to go to San Francisco? What about the busiest?
 WITH
 	available
 AS (
