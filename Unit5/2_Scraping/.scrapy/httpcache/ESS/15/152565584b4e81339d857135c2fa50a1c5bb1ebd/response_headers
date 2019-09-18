@@ -1,0 +1,13 @@
+Server: Sucuri/Cloudproxy
+Date: Wed, 18 Sep 2019 01:02:16 GMT
+Content-Type: text/html; charset=UTF-8
+X-Sucuri-Id: 11010
+X-Xss-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+Link: <http://everydaysexism.com/wp-json/>; rel="https://api.w.org/"
+Content-Encoding: gzip
+Vary: Accept-Encoding,Cookie
+X-Server-Cache: true
+X-Proxy-Cache: HIT
+X-Sucuri-Cache: EXPIRED
